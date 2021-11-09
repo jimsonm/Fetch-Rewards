@@ -28,9 +28,9 @@ curl --header "Content-Type: application/json" --request GET http://localhost:30
 
 Some considerations to take note of:
 1. Transactions can only be made one at a time
-2. I made it so that whenever a payer's balance would go negative as a result of spending points, the spending action is not made
-   An alternative would be to make it skip the transaction and subtract from the next transaction
-   I did not do this because I believe that would result in retroactively changing which transactions the spending subtracted from, depending on order
+2. I made it so that whenever a payer's balance would go negative as a result of spending points, the spending action is not made.
+   An alternative would be to make it skip the transaction and subtract from the next transaction.
+   I did not do this because I believe that would result in retroactively changing which transactions the spending subtracted from, depending on order.
 3. Currently, since I am mutating the transactions array when hitting the spend endpoint, this will result in errors if a 400 response is returned.
    This is because part of the transactions array might get before until the error is sent back, so when making a spend in subsequent requests,
-   the transactions array will already be mutated (therefore incorrect). (fixed by making a copy of the transactions before processing the spend request)
+   the transactions array will already be mutated (therefore incorrect). (Fixed by making a copy of the transactions before processing the spend request)
