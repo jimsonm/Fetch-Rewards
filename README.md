@@ -33,4 +33,4 @@ Some considerations to take note of:
    I did not do this because I believe that would result in retroactively changing which transactions the spending subtracted from, depending on order.
 3. Currently, since I am mutating the transactions array when hitting the spend endpoint, this will result in errors if a 400 response is returned.
    This is because part of the transactions array might get before until the error is sent back, so when making a spend in subsequent requests,
-   the transactions array will already be mutated (therefore incorrect). (Fixed by making a copy of the transactions before processing the spend request)
+   the transactions array will already be mutated (therefore incorrect). (Fixed by making a deep copy of the transactions before processing the spend request)

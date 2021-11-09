@@ -36,7 +36,8 @@ app.post('/spend', jsonParser, (req, res) => {
     }
     let { points } = req.body;
     transactions.sort((a, b) =>  new Date(a.timestamp) - new Date(b.timestamp));
-    let transactionsCopy = transactions.slice();
+    let transactionsCopy = JSON.parse(JSON.stringify(transactions));
+    console.log(transactionsCopy);
     const totals = {};
     let index = 0;
     let difference;
@@ -78,6 +79,7 @@ app.post('/spend', jsonParser, (req, res) => {
         }
     }
     if(points > 0) {
+        console.log(transactionsCopy);
         transactions = transactionsCopy;
         res.sendStatus(400);
     } else {
